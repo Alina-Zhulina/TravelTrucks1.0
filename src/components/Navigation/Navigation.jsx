@@ -1,18 +1,21 @@
 import { Link } from "react-router-dom";
+import icons from "../../img/svg/icons.svg";
+import css from "./Navigation.module.css";
+import NavItem from "../../NavLink/NavLink";
 
 const Navigation = () => {
   return (
-    <nav>
+    <nav className={css.navigation}>
       <div>
-        <Link to="/">TravelTracks</Link>
+        <Link to="/">
+          <svg className={css.logoIcon}>
+            <use href={`${icons}#icon-Logo`}></use>
+          </svg>
+        </Link>
       </div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/catalog">Catalog</Link>
-        </li>
+      <ul className={css.navlist}>
+        <NavItem to="/">Home</NavItem>
+        <NavItem to="/catalog">Catalog</NavItem>
       </ul>
     </nav>
   );

@@ -1,8 +1,9 @@
+import css from "./Header.module.css";
 import Navigation from "../Navigation/Navigation";
 
 const Header = () => {
   return (
-    <header>
+    <header className={css.header}>
       <Navigation />
     </header>
   );

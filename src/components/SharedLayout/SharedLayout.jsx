@@ -1,16 +1,16 @@
 import { Suspense } from "react";
 import Header from "../Header/Header";
 import Loader from "../Loader/Loader";
+import css from "./SharedLayout.module.css";
 
 const SharedLayout = ({ children }) => {
-  console.log("Rendering SharedLayout");
   return (
-    <>
+    <div className={css.layout}>
       <Header />
-      <main>
+      <main className={css.main}>
         <Suspense fallback={<Loader />}>{children}</Suspense>
       </main>
-    </>
+    </div>
   );
 };
 
