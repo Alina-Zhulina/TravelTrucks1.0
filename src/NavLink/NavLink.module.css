@@ -1,5 +1,8 @@
 .link {
   color: #101828;
+  transition-property: color;
+  transition-duration: 3s;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .active {
