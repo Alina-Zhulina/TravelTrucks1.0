@@ -10,12 +10,10 @@ const HomePage = () => {
 
   return (
     <div className={css.pageHome}>
-      <div>
-        <h1 className={css.titleHomePage}>Campers of your dreams</h1>
-        <p className={css.descriptionHomePage}>
-          You can find everything you want in our catalog
-        </p>
-      </div>
+      <h1 className={css.titleHomePage}>Campers of your dreams</h1>
+      <p className={css.descriptionHomePage}>
+        You can find everything you want in our catalog
+      </p>
 
       <Button onClick={goToCatalog} className={css.btnViewNow}>
         View Now
