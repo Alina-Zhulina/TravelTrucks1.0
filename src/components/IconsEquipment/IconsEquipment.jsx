@@ -1,7 +1,7 @@
 import icons from "../../img/svg/icons.svg";
 import css from "./IconsEquipment.module.css";
 
-const IconsEquipment = ({ equipment }) => {
+const IconsEquipment = ({ equipment, showAllByDefault = false }) => {
   const equipmentList = [
     { name: "AC", icon: "icon-wind", condition: equipment.AC },
     { name: "Bathroom", icon: "icon-ph_shower", condition: equipment.bathroom },
@@ -25,20 +25,20 @@ const IconsEquipment = ({ equipment }) => {
       condition: equipment.water,
     },
   ];
-
+  const filteredEquipment = equipmentList.filter(({ condition }) => condition);
+  const displayedEquipment = showAllByDefault
+    ? filteredEquipment
+    : filteredEquipment.slice(0, 5);
   return (
     <div className={css.iconContainer}>
-      {equipmentList.map(
-        ({ name, icon, condition }) =>
-          condition && (
-            <div className={css.iconContainer} key={name}>
-              <svg width={20} height={20}>
-                <use href={`${icons}#${icon}`} />
-              </svg>
-              <p>{name}</p>
-            </div>
-          )
-      )}
+      {displayedEquipment.map(({ name, icon }) => (
+        <div className={css.iconItem} key={name}>
+          <svg width={20} height={20}>
+            <use href={`${icons}#${icon}`} />
+          </svg>
+          <p>{name}</p>
+        </div>
+      ))}
     </div>
   );
 };
