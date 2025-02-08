@@ -57,7 +57,9 @@
   padding: 0;
   cursor: pointer;
 }
-
+.favoriteActive svg {
+  fill: red;
+}
 .camperRatingLocation {
   display: flex;
   gap: 16px;

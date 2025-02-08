@@ -1,8 +1,26 @@
 import IconsEquipment from "../IconsEquipment/IconsEquipment";
 import icons from "../../img/svg/icons.svg";
 import css from "./CamperItem.module.css";
+import { toggleFavorite } from "../../redux/campers/slice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavorites } from "../../redux/campers/selectors";
+import { useNavigate } from "react-router-dom";
 
 const CamperItem = ({ camper }) => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const handleShowMoreClick = () => {
+    navigate(`/catalog/${camper.id}`);
+  };
+
+  const handleFavoriteClick = () => {
+    dispatch(toggleFavorite(camper.id));
+  };
+  const favorites = useSelector(selectFavorites);
+  const isFavorite = favorites.includes(camper.id);
+
   const maxDescriptionLength = 69;
   const displayDescription =
     camper.description.length > maxDescriptionLength
@@ -22,8 +40,15 @@ const CamperItem = ({ camper }) => {
         <div className={css.camperHeader}>
           <h2 className={css.camperName}>{camper.name}</h2>
           <div className={css.priceFafourite}>
-            <p className={css.camperPrice}>${camper.price}</p>
-            <button className={css.addToFavorites}>
+            <span className={css.camperPrice}>{`€${camper.price?.toFixed(
+              2
+            )}`}</span>
+            <button
+              className={`${css.addToFavorites} ${
+                isFavorite ? css.favoriteActive : ""
+              }`}
+              onClick={handleFavoriteClick}
+            >
               <svg width={25} height={24}>
                 <use href={`${icons}#icon-Property-1Default`} />
               </svg>
@@ -51,7 +76,9 @@ const CamperItem = ({ camper }) => {
         <div className={css.iconsSpacing}>
           <IconsEquipment equipment={camper} />
         </div>
-        <button className={css.showMore}>Show More</button>
+        <button className={css.showMore} onClick={handleShowMoreClick}>
+          Show More
+        </button>
       </div>
     </div>
   );
